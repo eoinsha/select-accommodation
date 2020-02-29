@@ -1,0 +1,34 @@
+service: jsshow
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: eu-west-1
+  endpointType: REGIONAL
+  tracing:
+    apiGateway: true
+    lambda: true
+  logs:
+    restApi: true
+  logRetentionInDays: 7
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+        - s3:HeadObject
+      Resource:
+        - arn:aws:s3:::fourtheorem-jsshow/accommodation.csv
+
+functions:
+  lookup:
+    environment:
+      BUCKET_NAME: fourtheorem-jsshow
+      CSV_FILE: accommodation.csv
+    handler: handler.lookup
+    events:
+      - http:
+          path: accomodation
+          method: get
+          cors: false

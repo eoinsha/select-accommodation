@@ -1,0 +1,16 @@
+{
+  "name": "select-accommodation",
+  "version": "1.0.0",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.630.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "Eoin",
+  "license": "ISC"
+}
